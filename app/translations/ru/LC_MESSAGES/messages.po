@@ -1,0 +1,113 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-02-23 16:21+0300\n"
+"PO-Revision-Date: 2019-02-23 16:21+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: app/__init__.py:27
+msgid "Please log in to access this page"
+msgstr "Для получения доступа к странице войдите в систему"
+
+#: app/forms.py:9 app/forms.py:15 app/forms.py:45
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: app/forms.py:10 app/forms.py:17
+msgid "Password"
+msgstr "Пароль"
+
+#: app/forms.py:11
+msgid "Remember Me"
+msgstr "Запомнить меня"
+
+#: app/forms.py:12
+msgid "Sign in"
+msgstr "Войти"
+
+#: app/forms.py:16
+msgid "Email"
+msgstr "Почта"
+
+#: app/forms.py:19
+msgid "Repeat Password"
+msgstr "Повторить пароль"
+
+#: app/forms.py:20
+msgid "Register"
+msgstr "Зарегестрироваться"
+
+#: app/forms.py:25
+msgid "Please use a different username."
+msgstr "Пожалуйста укажите другой имя пользователя"
+
+#: app/forms.py:30
+msgid "Please use a different email address."
+msgstr "Пожалуйста выберите укажите другой адрес электронной почты"
+
+#: app/forms.py:46
+msgid "About_me"
+msgstr "О себе"
+
+#: app/forms.py:47
+msgid "Submit"
+msgstr "Подтвердить"
+
+#: app/routes.py:73
+#, python-format
+msgid "Welcome back, %(username)s"
+msgstr "С возвращением, %(username)s"
+
+#: app/routes.py:94
+msgid "Congratulations, you are now a registered user!"
+msgstr "Поздравляем, регистрация пройдена успешно"
+
+#: app/routes.py:107
+msgid "Check your email for the instructions to reset your password"
+msgstr "Проверьте Вашу электронную почту и следуйте указаниям для изменения пароля"
+
+#: app/routes.py:124
+msgid "Your password has been reset."
+msgstr "Ваш пароль был изменен"
+
+#: app/routes.py:152
+msgid "Your changes have been saved."
+msgstr "Изменения сохранены"
+
+#: app/routes.py:168
+msgid "You cannot follow yourself!"
+msgstr "Вы не можете подписаться на себя"
+
+#: app/routes.py:172
+#, python-format
+msgid "You are following %s!"
+msgstr "Вы подписаны на пользователя %s!"
+
+#: app/routes.py:183
+msgid "You cannot unfollow yourself!"
+msgstr "Вы не можете отписаться от себя"
+
+#: app/routes.py:187
+#, python-format
+msgid "You are not following %s."
+msgstr "Вы не подписаны на %s."
+
+#: app/templates/_post.html:14
+#, python-format
+msgid "%(username)s said %(when)s"
+msgstr "%(username)s написал %(when)s"
+

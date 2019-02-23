@@ -2,13 +2,14 @@ from datetime import datetime
 import logging
 from logging.handlers import SMTPHandler
 
-from flask import render_template, flash, redirect, request, url_for
+from flask import render_template, flash, redirect, request, url_for, g
 from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
 from app.models import User, Post
 from app.email import send_password_reset_email
+from flask_babel import _, get_locale
 
 # function called before request
 @app.before_request
@@ -16,6 +17,8 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+        # for moment.lang
+        g.locale = str(get_locale())
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -67,7 +70,7 @@ def login():
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
-        flash(f'Welcome back, {user.username}')
+        flash(_('Welcome back, %(username)s', username = user.username))
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
@@ -88,7 +91,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        flash(_('Congratulations, you are now a registered user!'))
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
@@ -101,7 +104,7 @@ def reset_password_request():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             send_password_reset_email(user)
-        flash('Check your email for the instructions to reset your password')
+        flash(_('Check your email for the instructions to reset your password'))
         return redirect(url_for('login'))
     return render_template('reset_password_request.html',
                            title='Reset Password', form=form)
@@ -118,7 +121,7 @@ def reset_password(token):
     if form.validate_on_submit():
         user.set_password(form.password.data)
         db.session.commit()
-        flash('Your password has been reset.')
+        flash(_('Your password has been reset.'))
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
 
@@ -146,7 +149,7 @@ def edit_profile():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
         db.session.commit()
-        flash('Your changes have been saved.')
+        flash(_('Your changes have been saved.'))
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
@@ -162,11 +165,11 @@ def follow(username):
         flash('User {} not found.'.format(username))
         return redirect(url_for('index'))
     if user == current_user:
-        flash('You cannot follow yourself!')
+        flash(_('You cannot follow yourself!'))
         return redirect(url_for('user', username=username))
     current_user.follow(user)
     db.session.commit()
-    flash('You are following {}!'.format(username))
+    flash(_('You are following %s!', username))
     return redirect(url_for('user', username=username))
 
 @app.route('/unfollow/<username>')
@@ -177,9 +180,9 @@ def unfollow(username):
         flash('User {} not found.'.format(username))
         return redirect(url_for('index'))
     if user == current_user:
-        flash('You cannot unfollow yourself!')
+        flash(_('You cannot unfollow yourself!'))
         return redirect(url_for('user', username=username))
     current_user.unfollow(user)
     db.session.commit()
-    flash('You are not following {}.'.format(username))
+    flash(_('You are not following %s.', username))
     return redirect(url_for('user', username=username))

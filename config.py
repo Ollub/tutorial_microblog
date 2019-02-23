@@ -15,3 +15,5 @@ class Config(object):
     ADMINS = ['orlov.o@mail.ru']
     #pagination
     POSTS_PER_PAGE = 25
+    #translation
+    LANGUAGES = ['en', 'ru']
