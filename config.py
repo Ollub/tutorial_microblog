@@ -17,3 +17,4 @@ class Config(object):
     POSTS_PER_PAGE = 25
     #translation
     LANGUAGES = ['en', 'ru']
+    YA_KEY = 'trnsl.1.1.20190224T072926Z.b67620fcaa39011a.670b6351a26efb3b442511116be06521d6ed0f15'
