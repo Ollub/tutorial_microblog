@@ -2,6 +2,7 @@ __pycache__
 env
 .git
 .flaskenv
+.env
 migrations/
 gmail.bat
 logs/
