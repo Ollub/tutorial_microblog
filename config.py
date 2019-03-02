@@ -23,4 +23,4 @@ class Config(object):
     LANGUAGES = ['en', 'ru']
     YA_KEY = 'trnsl.1.1.20190224T072926Z.b67620fcaa39011a.670b6351a26efb3b442511116be06521d6ed0f15'
     #search engine
-    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL') or 'http://localhost:9200'
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
